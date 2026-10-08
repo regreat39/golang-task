@@ -11,4 +11,4 @@ go run .
 
 curl -X POST http://localhost:8080/schedule \
   -H "Content-Type: application/json" \
-  -d '{"user_id":1,"drug_name":"Аспирин","period":"2h","course_days":7}'
+  -d '{"user_id":1,"drug_name":"Aspirin","period":"2h","course_days":7}'
