@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"time"
 )
 
@@ -25,20 +26,20 @@ func NewScheduleService(storage ScheduleStorage, cfg Config, now func() time.Tim
 	}
 }
 
-func (s ScheduleService) Create(userID int, req CreateScheduleRequest) (int, error) {
+func (s ScheduleService) Create(req CreateScheduleRequest) (int, error) {
 	period, err := time.ParseDuration(req.Period)
 	if err != nil {
 		return 0, err
 	}
 
 	if period < time.Hour || period > 24*time.Hour {
-		return 0, err
+		return 0, errors.New("период должен быть в диапазоне от 1 до 24 часов")
 	}
 
 	now := s.now().UTC()
 
 	sch := Schedule{
-		UserID:        userID,
+		UserID:        req.UserID,
 		DrugName:      req.DrugName,
 		PeriodMinutes: int(period.Minutes()),
 		CourseDays:    normCourseDays(req.CourseDays),

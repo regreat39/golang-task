@@ -35,12 +35,13 @@ func TestServiceCreate(t *testing.T) {
 
 	zeroDays := 0
 	req := CreateScheduleRequest{
+		UserID:     1,
 		DrugName:   "Аспирин",
 		Period:     "24h",
 		CourseDays: &zeroDays,
 	}
 
-	id, err := svc.Create(1, req)
+	id, err := svc.Create(req)
 	require.NoError(t, err)
 	require.Greater(t, id, 0)
 
@@ -62,12 +63,13 @@ func TestServiceNextDose(t *testing.T) {
 
 	days := 14
 	req := CreateScheduleRequest{
+		UserID:     1,
 		DrugName:   "Аспирин",
 		Period:     "2h",
 		CourseDays: &days,
 	}
 
-	_, err := svc.Create(1, req)
+	_, err := svc.Create(req)
 	require.NoError(t, err)
 
 	got, err := svc.NextDose(1)
