@@ -17,6 +17,7 @@ type Dose struct {
 }
 
 type CreateScheduleRequest struct {
+	UserID     int    `json:"user_id"`
 	DrugName   string `json:"drug_name"`
 	Period     string `json:"period"`
 	CourseDays *int   `json:"course_days"`
