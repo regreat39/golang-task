@@ -1,6 +1,6 @@
 # Расписание приёма лекарств
 
-HTTP-сервис для хранения расписания приёма лекарств.
+HTTP-сервис для хранения расписания приёма лекарств.  
 Go, SQLite, Docker, Docker-Compose.
 
 ## Запуск
@@ -22,4 +22,3 @@ curl -X POST http://localhost:8080/schedule -H "Content-Type: application/json" 
 ```powershell
 docker compose exec app sh -c "apk add --no-cache sqlite && sqlite3 /app/data/medicine.db 'SELECT * FROM schedules;'"
 ```
->>>>>>> 8ad7a77 (Добавить Docker)
